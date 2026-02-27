@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainy Sanctuary | Deep Relaxation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --slate: #2c3e50;
+            --mist: #ecf0f1;
+            --lavender-soft: #95a5a6;
+            --accent: #a3b1c6;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f9;
+            color: var(--slate);
+            overflow-x: hidden;
+        }
+
+        /* --- Keyframe Animations --- */
+        @keyframes drift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse-soft {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: 90vh;
+            background: linear-gradient(-45deg, #d1d9e6, #ebf0f6, #e2e8f0, #f8fafc);
+            background-size: 400% 400%;
+            animation: drift 15s ease infinite;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .hero-img-container {
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-img-container img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 25px 25px 50px #d1d9e6, -25px -25px 50px #ffffff;
+            transition: 0.5s;
+        }
+
+        /* --- Global Elements --- */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        /* --- Info Cards & Hover Effects --- */
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(163, 177, 198, 0.3);
+            background: var(--accent);
+            color: white;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            transition: 0.4s;
+        }
+
+        .feature-card:hover i {
+            color: white;
+            animation: pulse-soft 2s infinite;
+        }
+
+        /* --- Photo Grid --- */
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 350px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 62, 80, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.5s;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .grid-item:hover img { transform: scale(1.1); }
+        .grid-item:hover .grid-overlay { opacity: 1; }
+
+        /* --- Testimonial/Quote Section --- */
+        .quote-box {
+            background: #fff;
+            border-left: 5px solid var(--accent);
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.02);
+        }
+
+        /* --- Custom Navbar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--slate) !important;
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#" style="color: var(--slate); letter-spacing: -1px;">Rainy<span style="color: var(--accent);">Sanctuary</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">The Science</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#benefits">Benefits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Moments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Connect</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">Embrace the <span class="text-muted italic">Healing</span> Rhythm of Rain.</h1>
+                    <p class="lead mb-5 text-secondary">Discover why millions find solace in the sound of falling water. A curated experience designed to help you breathe, focus, and find your center.</p>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-dark btn-lg px-4 rounded-pill">Get Started</button>
+                        <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill">Learn More</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="hero-img-container">
+                        <img src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?auto=format&fit=crop&q=80&w=1000" alt="Rainy Mood">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&q=80&w=800" class="img-fluid rounded-4 shadow-lg" alt="Nature">
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <h2 class="section-title">The Petrichor Effect</h2>
+                    <p class="fs-5 mb-4">Rain is more than just weather; it's a sensory reset. From the earthy scent of petrichor to the rhythmic patter on leaves, every element works to lower blood pressure and reduce anxiety.</p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-sm-6">
+                            <div class="p-3 border-start border-4 border-info bg-light">
+                                <h5>Sonic Comfort</h5>
+                                <p class="small m-0">Pink noise masks distracting sounds, aiding deep sleep.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 border-start border-4 border-primary bg-light">
+                                <h5>Visual Calm</h5>
+                                <p class="small m-0">The soft palette of a rainy day reduces visual overstimulation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="py-5" style="background: #f8fafc;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Why We Love the Storm</h2>
+                <p class="text-muted">Explore the multi-dimensional benefits of rainy environments.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <i class="bi bi-moon-stars"></i>
+                        <h4 class="mt-4">Better Sleep</h4>
+                        <p>The consistent sound profile of rain creates a "sound cocoon," preventing sudden noises from waking you up during the night.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <i class="bi bi-brain"></i>
+                        <h4 class="mt-4">Deep Focus</h4>
+                        <p>A rainy backdrop is ideal for creative work, as it provides enough stimulation to keep the mind engaged but not distracted.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <i class="bi bi-heart-pulse"></i>
+                        <h4 class="mt-4">Stress Relief</h4>
+                        <p>Negative ions released during rainfall are believed to increase serotonin levels, boosting mood and relieving stress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="section-title mb-5">Visual Serenity</h2>
+            <div class="row g-4">
+                <div class="col-md-8" data-aos="zoom-in">
+                    <div class="grid-item">
+                        <img src="https://images.unsplash.com/photo-1438449805896-28a666819a20?auto=format&fit=crop&q=80&w=1200" alt="Mist">
+                        <div class="grid-overlay"><h4>The Misty Morning</h4></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="grid-item">
+                        <img src="https://images.unsplash.com/photo-1493314894560-5c4dff73653e?auto=format&fit=crop&q=80&w=600" alt="Rainy Street">
+                        <div class="grid-overlay"><h4>Neon Reflections</h4></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="grid-item">
+                        <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&q=80&w=600" alt="Droplets">
+                        <div class="grid-overlay"><h4>Nature's Jewels</h4></div>
+                    </div>
+                </div>
+                <div class="col-md-8" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="grid-item">
+                        <img src="https://images.unsplash.com/photo-1428592953211-077101b2021b?auto=format&fit=crop&q=80&w=1200" alt="Window">
+                        <div class="grid-overlay"><h4>Cozy Indoors</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background: var(--accent);">
+        <div class="container py-5 text-white">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2 class="playfair display-5 fw-bold">Wisdom in the Rain</h2>
+                    <p class="lead opacity-75">From poets to scientists, the rain has always been a source of profound inspiration.</p>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="quote-box text-dark rounded-3">
+                        <p class="fs-5 mb-0">"The best thing one can do when it's raining is to let it rain."</p>
+                        <small class="text-muted">— Henry Wadsworth Longfellow</small>
+                    </div>
+                    <div class="quote-box text-dark rounded-3">
+                        <p class="fs-5 mb-0">"Life isn't about waiting for the storm to pass, it's about learning to dance in the rain."</p>
+                        <small class="text-muted">— Vivian Greene</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 bg-dark text-white">
+        <div class="container text-center">
+            <h2 class="playfair mb-4">Rainy Sanctuary</h2>
+            <div class="mb-4">
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white mx-3 fs-4"><i class="bi bi-spotify"></i></a>
+            </div>
+            <p class="opacity-50">Providing peace since 2026. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
